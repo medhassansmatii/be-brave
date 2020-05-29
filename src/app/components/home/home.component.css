@@ -1,0 +1,8 @@
+.card-img-top {
+    height: 200px;
+}
+.container{
+    height: 300px;
+    max-width: 1200px;
+    background-color: blueviolet;
+}

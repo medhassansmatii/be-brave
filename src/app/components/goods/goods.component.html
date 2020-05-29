@@ -1,0 +1,44 @@
+<div>
+  
+  <button class="btn btn-success" >Add Items</button><button class="btn btn-warning" >Update Or Delete Items</button>
+
+  <table>
+    <thead>
+      <td>Name</td>
+      <td>Price</td>
+      <td>color</td>
+      <td>size</td>
+    
+      <td>Options</td>
+    </thead>
+    <tbody>
+      <tr *ngFor="let good of goods; index as i">
+        <td>
+          <input class="form-control" type="string" placeholder="{{good.name }}" [(ngModel)]="good.name"></td>
+        <td>
+          <input class="form-control" type="number" placeholder="{{good.price }}" [(ngModel)]="good.price "></td>
+        <td>
+          <input class="form-control" type="string" placeholder="{{good.color }}" [(ngModel)]="good.color"></td>
+        <td>
+          <input class="form-control" type="string" placeholder="{{good.size}}" [(ngModel)]="good.size"></td>
+       
+        <td>{{(good.price * good.amount) | currency}}</td>
+        <td>
+          <button class="btn btn-primary" (click)="save(i)">Save</button>  <button class="btn btn-danger" (click)="delete(i)">Delete</button>
+        
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+
+  <h2 class="text-center">Add New Good</h2>
+  <form #f="ngForm" (ngSubmit)="addNewGood(f)">
+    <input type="text" class="form-control" name="name" ngModel placeholder="Name" required>
+    <input type="text" class="form-control" name="color" ngModel placeholder="color" required>
+    <input type="text" class="form-control" name="size" ngModel placeholder="size" required>
+    <input type="number" class="form-control" name="price" ngModel placeholder="Price" required>
+    <input type="file" ngModel name="image" required #image> <br><br>
+    <input type="submit" value="Add" class="btn btn-primary" [disabled]="f.invalid">
+  </form>
+</div>

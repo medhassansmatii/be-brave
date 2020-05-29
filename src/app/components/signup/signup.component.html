@@ -1,0 +1,48 @@
+
+
+<div class="container" id="container">
+<div class="form-container sign-in-container">
+  <form #f="ngForm" (ngSubmit)="signup(f)">
+    <h1>Create Account</h1>
+    <div class="social-container">
+      <a class="social"><i class="fa fa-facebook"></i></a>
+
+      <div class="formGroup">
+        <button type="button" (click)="authService.FacebookAuth()">
+           Log in with Facebook
+        </button>
+     </div>
+     
+      <a href="#" class="social"><i class="fa fa-google-plus"></i></a>
+      <a href="#" class="social"><i class="fa fa-linkedin"></i></a>
+    </div>
+    <span>or use your email for registration</span>
+    <input ngModel name="name" #name="ngModel" type="text" class="form-control" placeholder="Your name" required />
+    <div class="alert alert-danger" *ngIf="name.invalid && name.touched">Name is required</div>
+    <input ngModel name="email" #email="ngModel" type="email" class="form-control" placeholder="Email" required email />
+    <div class="alert alert-danger" *ngIf="email.touched && email.errors?.required">Email is required</div>
+    <div class="alert alert-danger" *ngIf="email.touched && email.errors?.email">Your input doesn't match email format</div>
+    <input ngModel name="password" #password="ngModel" type="password" class="form-control" placeholder="Password"
+    required minlength="6" />
+    <div class="alert alert-danger" *ngIf="password.touched && password.errors?.required">Password is required</div>
+    <div class="alert alert-danger" *ngIf="password.touched && password.errors?.minlength">Password should be 6+
+      charachters</div>
+    <input ngModel name="passwordConfirm" #passwordConfirm="ngModel" type="password" class="form-control" placeholder="Confirm Password"
+    required />
+    <div class="alert alert-danger" *ngIf="passwordConfirm.invalid && passwordConfirm.touched">Password Confirm is
+      required</div>
+    <div class="alert alert-danger" *ngIf="passwordConfirm.value !== password.value && passwordConfirm.touched">Passwords
+      are not equal</div>
+    <input  ngModel name="address" #address="ngModel" type="text" class="form-control" placeholder="Address" required />
+    <div class="alert alert-danger" *ngIf="address.invalid && address.touched">Address is required</div>
+    <button [disabled]="f.invalid || passwordConfirm.value !== password.value">Sign Up</button>
+  </form>
+</div>
+<div class="overlay-container">
+  <div class="overlay">
+<div class="overlay-panel overlay-right">
+  <h1>Welcome Back!</h1>
+  <p>To keep connected with us please login with your personal info</p>
+  <button class="ghost" routerLink="/login" id="signIn">Sign In</button>
+</div></div>
+</div>
